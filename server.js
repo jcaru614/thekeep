@@ -16,8 +16,8 @@ app.use(express.json());
 app.use(bodyParser.json());
 
 // files
-require('./models/user.model');
-require('./routes/user.routes')(app);
+require('./models/usermodel');
+require('./routes/userRoutes')(app);
 
 mongoose.connect(process.env.MongoDB_URI || 'mongodb://localhost:27017/the_keep', {
     useNewUrlParser: true,
@@ -32,7 +32,6 @@ app.use(express.static(path.join(__dirname, '../build')))
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../build'))
 })
-
 
 
 app.listen(port, () => {

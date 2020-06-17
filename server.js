@@ -34,7 +34,7 @@ mongoose.connect(process.env.MongoDB_URI || 'mongodb://localhost:27017/the_keep'
 
     // heroku
 if (process.env.NODE_ENV === 'production') {
-    app.use(express.static( "client/build" ));
+    app.use(express.static(path.join(__dirname, "client", "build")))
 
     app.get('*', (req, res) => {
         res.sendFile(path.join(__dirname, "client", "build", "index.html")) // path to build to serve files

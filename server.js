@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const path = require('path')
 const mongoose = require('mongoose');
-const port = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8080;
 
 // configuration
 app.use(cors({
@@ -30,17 +30,21 @@ mongoose.connect(process.env.MongoDB_URI || 'mongodb://localhost:27017/the_keep'
     .catch(err => console.log("Something went wrong when connecting to the database", err));
 
 // heroku
-// app.use(express.static(path.join(__dirname, "../client/build")))
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static( 'client/build' ));
+
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname, 'client', 'build', 'index.html')); // relative path
+    });
+}
+
+
+// app.use(express.static(path.join(__dirname, '../build')))
 // app.get('*', (req, res) => {
-//     res.sendFile(path.join(__dirname, "../client/build/index.html")) // path to build to serve files
+//     res.sendFile(path.join(__dirname, '../build'))
 // })
 
-app.use(express.static(path.join(__dirname, '../build')))
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../build'))
-})
 
-
-app.listen(port, () => {
-    console.log(`Server is listening on port: ${port}`);
+app.listen(PORT, () => {
+    console.log(`Server is listening on PORT: ${PORT}`);
 });

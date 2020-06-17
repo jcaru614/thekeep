@@ -9,7 +9,7 @@ const Hamburger = () => {
     const [refresher, setRefresher] = useState(false)
 
     const onClickHandler = () => {
-        axios.get('http://localhost:8000/api/v1/logout', { withCredentials: true })
+        axios.get('http://localhost:8080/api/v1/logout', { withCredentials: true })
             .then(response => {
                 setRefresher(!refresher)
                 localStorage.clear();

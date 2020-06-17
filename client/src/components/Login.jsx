@@ -20,7 +20,7 @@ const Login = () => {
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:8000/api/v1/login', loginState, { withCredentials: true })
+        axios.post('http://localhost:8080/api/v1/login', loginState, { withCredentials: true })
             .then(res => {
                 console.log(res);
                 if (res.data.errors) {

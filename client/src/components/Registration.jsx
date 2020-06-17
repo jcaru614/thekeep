@@ -23,7 +23,7 @@ const Registration = () => {
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:8000/api/v1/create', registerState, {withCredentials:true})
+        axios.post('http://localhost:8080/api/v1/create', registerState, {withCredentials:true})
             .then(res => {
                 if (res.data.errors) {
                     setErrorState({

@@ -23,7 +23,7 @@ const Update = () => {
         if (localStorage.getItem('userId') === null) {
             navigate('/')
         } else {
-            axios.get(`http://localhost:8000/api/v1/readOne/${localStorage.getItem('userId')}`, { withCredentials: true })
+            axios.get(`http://localhost:8080/api/v1/readOne/${localStorage.getItem('userId')}`, { withCredentials: true })
                 .then(res => {
                     console.log(res)
                     setUserState(res.data)
@@ -47,7 +47,7 @@ const Update = () => {
         e.preventDefault();
         let temp = { ...userState };
         console.log("temp from update", temp);
-        axios.put(`http://localhost:8000/api/v1/updateinfo/${localStorage.getItem('userId')}`, temp, { withCredentials: true })
+        axios.put(`http://localhost:8080/api/v1/updateinfo/${localStorage.getItem('userId')}`, temp, { withCredentials: true })
             .then(res => {
                 console.log(res)
                 setRefreshState(!refreshState)
@@ -73,7 +73,7 @@ const Update = () => {
     }
 
     const handleDelete = () => {
-        axios.delete(`http://localhost:8000/api/v1/deleteOne/${localStorage.getItem('userId')}` , { withCredentials: true})
+        axios.delete(`http://localhost:8080/api/v1/deleteOne/${localStorage.getItem('userId')}` , { withCredentials: true})
             .then(res => {
                 console.log(res)
                 console.log('user has been deleted');

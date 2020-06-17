@@ -15,7 +15,7 @@ const Navbar = (props) => {
     if (localStorage.getItem('userId') === null) {
       navigate('/')
     } else {
-      axios.get(`http://localhost:8000/api/v1/readOne/${localStorage.getItem('userId')}`, { withCredentials: true })
+      axios.get(`http://localhost:8080/api/v1/readOne/${localStorage.getItem('userId')}`, { withCredentials: true })
         .then(response => {
           console.log(response)
           setUserState(response.data)

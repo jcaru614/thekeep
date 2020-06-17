@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const path = require('path')
 const mongoose = require('mongoose');
-const PORT = process.env.PORT || 8000;
+const port = process.env.PORT || 8080;
 
 // configuration
 app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
@@ -35,6 +35,6 @@ app.get('*', (req, res) => {
 
 
 
-app.listen(PORT, () => {
-    console.log(`Server is listening on port: ${PORT}`);
+app.listen(port, () => {
+    console.log(`Server is listening on port: ${port}`);
 });

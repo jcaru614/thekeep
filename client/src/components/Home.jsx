@@ -19,7 +19,7 @@ const Home = () => {
         if (localStorage.getItem('userId') === null) {
             navigate('/')
         } else {
-            axios.get(`http://localhost:8000/api/v1/readOne/${localStorage.getItem('userId')}`, { withCredentials: true })
+            axios.get(`http://localhost:8080/api/v1/readOne/${localStorage.getItem('userId')}`, { withCredentials: true })
                 .then(res => {
                     console.log(res)
                     setUserState(res.data)
@@ -48,7 +48,7 @@ const Home = () => {
         // unshift to show tasks newest to oldest
         console.log("temp", temp);
         console.log("temp.tasks", temp.tasks);
-        axios.put(`http://localhost:8000/api/v1/updateOne/${localStorage.getItem('userId')}`, temp, { withCredentials: true })
+        axios.put(`http://localhost:8080/api/v1/updateOne/${localStorage.getItem('userId')}`, temp, { withCredentials: true })
             .then(res => {
                 console.log(res)
                 setRefreshState(!refreshState)

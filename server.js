@@ -10,7 +10,7 @@ const port = process.env.PORT || 8080;
 
 // configuration
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: ['http://localhost:3000', "https://thekeepapp.herokuapp.com"],
     methods: ["GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE"],
     credentials: true, // allow settings of cookies
 }));
@@ -33,13 +33,13 @@ mongoose.connect(process.env.MongoDB_URI || 'mongodb://localhost:27017/the_keep'
     .catch(err => console.log("Something went wrong when connecting to the database", err));
 
     // heroku
-if (process.env.NODE_ENV === 'production') {
+
     app.use(express.static(path.join(__dirname, "client", "build")))
 
     app.get('*', (req, res) => {
         res.sendFile(path.join(__dirname, "client", "build", "index.html")) // path to build to serve files
     })
-};
+
 
 app.listen(port, () => {
     console.log(`Server is listening on port: ${port}`);

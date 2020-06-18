@@ -1,7 +1,7 @@
-import React from 'react'
-import Registration from './Registration'
-import Login from './Login'
-import Navbar from './Navbar'
+import React from 'react';
+import Registration from './Registration';
+import Login from './Login';
+import Navbar from './Navbar';
 
 const Wrapper = () => {
     return (

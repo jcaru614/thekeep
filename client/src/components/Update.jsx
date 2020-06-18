@@ -6,6 +6,7 @@ import Navbar from './Navbar'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import Button from 'react-bootstrap/Button'
 import DeleteSweepIcon from '@material-ui/icons/DeleteSweep';
+import variables from './variables';
 
 const Update = () => {
     const [userState, setUserState] = useState({
@@ -23,7 +24,7 @@ const Update = () => {
         if (localStorage.getItem('userId') === null) {
             navigate('/')
         } else {
-            axios.get(`http://localhost:8080/api/v1/readOne/${localStorage.getItem('userId')}`, { withCredentials: true })
+            axios.get(`${variables.prod_heroku_address}/api/v1/readOne/${localStorage.getItem('userId')}`, { withCredentials: true })
                 .then(res => {
                     console.log(res)
                     setUserState(res.data)
@@ -47,7 +48,7 @@ const Update = () => {
         e.preventDefault();
         let temp = { ...userState };
         console.log("temp from update", temp);
-        axios.put(`http://localhost:8080/api/v1/updateinfo/${localStorage.getItem('userId')}`, temp, { withCredentials: true })
+        axios.put(`${variables.prod_heroku_address}/api/v1/updateinfo/${localStorage.getItem('userId')}`, temp, { withCredentials: true })
             .then(res => {
                 console.log(res)
                 setRefreshState(!refreshState)
@@ -73,7 +74,7 @@ const Update = () => {
     }
 
     const handleDelete = () => {
-        axios.delete(`http://localhost:8080/api/v1/deleteOne/${localStorage.getItem('userId')}` , { withCredentials: true})
+        axios.delete(`${variables.prod_heroku_address}/api/v1/deleteOne/${localStorage.getItem('userId')}` , { withCredentials: true})
             .then(res => {
                 console.log(res)
                 console.log('user has been deleted');

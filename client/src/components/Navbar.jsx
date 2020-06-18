@@ -3,7 +3,8 @@ import { Link, navigate } from "@reach/router";
 import { useEffect, useState } from "react";
 import axios from 'axios'
 import Hamburger from "./Hamburger";
-import thekeep from '../images/thekeep.png'
+import thekeep from '../images/thekeep.png';
+import variables from './variables'
 
 const Navbar = (props) => {
   console.log("navbar prop!!!", props.refs);
@@ -15,7 +16,7 @@ const Navbar = (props) => {
     if (localStorage.getItem('userId') === null) {
       navigate('/')
     } else {
-      axios.get(`http://localhost:8080/api/v1/readOne/${localStorage.getItem('userId')}`, { withCredentials: true })
+      axios.get(`${variables.prod_heroku_address}/api/v1/readOne/${localStorage.getItem('userId')}`, { withCredentials: true })
         .then(response => {
           console.log(response)
           setUserState(response.data)

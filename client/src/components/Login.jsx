@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import LaunchIcon from '@material-ui/icons/Launch';
 import { navigate } from '@reach/router';
+import variables from './variables'
 
 const Login = () => {
 
@@ -20,7 +21,7 @@ const Login = () => {
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:8080/api/v1/login', loginState, { withCredentials: true })
+        axios.post(`${variables.prod_heroku_address}/api/v1/login`, loginState, { withCredentials: true })
             .then(res => {
                 console.log(res);
                 if (res.data.errors) {

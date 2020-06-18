@@ -4,12 +4,13 @@ import { navigate } from "@reach/router";
 import { useState } from "react";
 import ListIcon from '@material-ui/icons/List';
 import Dropdown from 'react-bootstrap/Dropdown'
+import variables from './variables'
 
 const Hamburger = () => {
     const [refresher, setRefresher] = useState(false)
 
     const onClickHandler = () => {
-        axios.get('http://localhost:8080/api/v1/logout', { withCredentials: true })
+        axios.get(`${variables.prod_heroku_address}/api/v1/logout`, { withCredentials: true })
             .then(response => {
                 setRefresher(!refresher)
                 localStorage.clear();

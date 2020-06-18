@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(bodyParser.json());
 
 // files
-require('./models/usermodel');
+require('./models/userModel');
 require('./routes/userRoutes')(app);
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/the_keep', {

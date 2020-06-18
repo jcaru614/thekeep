@@ -22,7 +22,7 @@ app.use(bodyParser.json());
 require('./models/usermodel');
 require('./routes/userRoutes')(app);
 
-mongoose.connect(process.env.MongoDB_URI || 'mongodb://localhost:27017/the_keep', {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/the_keep', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
@@ -32,18 +32,7 @@ mongoose.connect(process.env.MongoDB_URI || 'mongodb://localhost:27017/the_keep'
 // heroku
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static( 'client/build' ));
-
-    app.get('*', (req, res) => {
-        res.sendFile(path.join(__dirname, 'client', 'build', 'index.html')); // relative path
-    });
 }
-
-
-// app.use(express.static(path.join(__dirname, '../build')))
-// app.get('*', (req, res) => {
-//     res.sendFile(path.join(__dirname, '../build'))
-// })
-
 
 app.listen(PORT, () => {
     console.log(`Server is listening on PORT: ${PORT}`);
